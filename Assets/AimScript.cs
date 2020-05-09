@@ -12,7 +12,6 @@ public class AimScript : MonoBehaviour {
   public float angleRange = 120;
   public float deadZone = 0.3f;
   public float slashDuration = .5f;
-  public float blockDuration = 1f;
 
   public float swingAngleStart = -75;
 
@@ -27,7 +26,6 @@ public class AimScript : MonoBehaviour {
   public float ellipseOffsetY = -2;
 
   float slashTimeRemaining = 0;
-  float blockTimeRemaining = 0;
 
   void Start() {
     swordSpriter = sword.GetComponent<SpriteRenderer>();
@@ -51,14 +49,16 @@ public class AimScript : MonoBehaviour {
         PositionSword(0);
       }
 
-      if (blockTimeRemaining <= 0) {
-        if (gamepad.rightTrigger.wasPressedThisFrame) {
-          slashTimeRemaining = slashDuration;
-          swordTrail.emitting = true;
-        }
-        else if (gamepad.leftTrigger.wasPressedThisFrame) {
-          blockTimeRemaining = blockDuration;
-        }
+      if (gamepad.leftTrigger.isPressed) {
+        float blockAngle = aimAngle * blockAngleModifier + Mathf.Sign(aimAngle) * angleRange * (1 - blockAngleModifier);
+        PositionSword(0, blockAngle);
+        sword.position -= new Vector3(sword.position.x, 0, 0);
+        sword.localScale *= new Vector2(-1, 1);
+        sword.localRotation = Quaternion.Euler(0, 0, -sword.localRotation.eulerAngles.z);
+      }
+      else if (gamepad.rightTrigger.wasPressedThisFrame) {
+        slashTimeRemaining = slashDuration;
+        swordTrail.emitting = true;
       }
     }
 
@@ -71,16 +71,6 @@ public class AimScript : MonoBehaviour {
       }
 
       slashTimeRemaining -= Time.deltaTime;
-    }
-
-    if (blockTimeRemaining > 0) {
-      float blockAngle = aimAngle * blockAngleModifier + Mathf.Sign(aimAngle) * angleRange * (1 - blockAngleModifier);
-      PositionSword(0, blockAngle);
-      sword.position -= new Vector3(sword.position.x, 0, 0);
-      sword.localScale *= new Vector2(-1, 1);
-      sword.localRotation = Quaternion.Euler(0, 0, -sword.localRotation.eulerAngles.z);
-
-      blockTimeRemaining -= Time.deltaTime;
     }
   }
 
