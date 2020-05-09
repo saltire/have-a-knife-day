@@ -530,7 +530,6 @@ MonoBehaviour:
   angleRange: 75
   deadZone: 0.3
   slashDuration: 0.3
-  blockDuration: 1
   swingAngleStart: -75
   ellipseRadiusX: 2
   ellipseRadiusY: 1

@@ -49,7 +49,8 @@ public class AimScript : MonoBehaviour {
       }
 
       if (gamepad.leftShoulder.isPressed || gamepad.rightShoulder.isPressed) {
-        float blockAngle = aimAngle * blockAngleModifier + Mathf.Sign(aimAngle) * angleRange * (1 - blockAngleModifier);
+        float blockAngle = (Mathf.Abs(aimAngle) * blockAngleModifier + angleRange * (1 - blockAngleModifier)) *
+          (gamepad.leftShoulder.isPressed ? 1 : -1);
         PositionSword(0, blockAngle);
         sword.position -= new Vector3(sword.position.x, 0, 0);
         sword.localScale *= new Vector2(-1, 1);
@@ -100,7 +101,7 @@ public class AimScript : MonoBehaviour {
     float swordWidth = swordHeight * Mathf.Tan(-swingAngle * Mathf.Deg2Rad);
     Vector2 swordPoint = handlePoint + new Vector2(swordWidth, swordHeight);
 
-    Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(aimAngle), Vector3.forward);
+    Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(angle), Vector3.forward);
     handlePoint = rotation * handlePoint;
     swordPoint = rotation * swordPoint;
     // Debug.DrawLine(handlePoint, swordPoint);
