@@ -17,6 +17,7 @@ public class AimScript : MonoBehaviour {
   public float swingAngleStart = -75;
 
   SpriteRenderer swordSpriter;
+  TrailRenderer swordTrail;
 
   float aimAngle;
   float blockAngleModifier = 0.6f;
@@ -30,6 +31,7 @@ public class AimScript : MonoBehaviour {
 
   void Start() {
     swordSpriter = sword.GetComponent<SpriteRenderer>();
+    swordTrail = sword.GetComponentInChildren<TrailRenderer>();
   }
 
   void Update() {
@@ -52,6 +54,7 @@ public class AimScript : MonoBehaviour {
       if (blockTimeRemaining <= 0) {
         if (gamepad.rightTrigger.wasPressedThisFrame) {
           slashTimeRemaining = slashDuration;
+          swordTrail.emitting = true;
         }
         else if (gamepad.leftTrigger.wasPressedThisFrame) {
           blockTimeRemaining = blockDuration;
@@ -62,6 +65,10 @@ public class AimScript : MonoBehaviour {
     if (slashTimeRemaining > 0) {
       float lerpValue = (slashDuration - slashTimeRemaining) / slashDuration;
       PositionSword(lerpValue);
+
+      if (lerpValue > .9f) {
+        swordTrail.emitting = false;
+      }
 
       slashTimeRemaining -= Time.deltaTime;
     }
