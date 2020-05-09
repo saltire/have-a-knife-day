@@ -51,6 +51,9 @@ public class AimScript : MonoBehaviour {
 
     if (slashTimeRemaining > 0) {
       float lerpValue = (slashDuration - slashTimeRemaining) / slashDuration;
+      if (angle < 0) {
+        lerpValue = 1 - lerpValue;
+      }
       slashTimeRemaining -= Time.deltaTime;
 
       Vector2 ellipseCenter = Vector2.down * ellipseOffsetY;
@@ -62,7 +65,7 @@ public class AimScript : MonoBehaviour {
       float swordWidth = swordHeight * Mathf.Tan(-swordAngle * Mathf.Deg2Rad);
       Vector2 swordPoint = handlePoint + new Vector2(swordWidth, swordHeight);
 
-      Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+      Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(angle), Vector3.forward);
       handlePoint = rotation * handlePoint;
       swordPoint = rotation * swordPoint;
 
