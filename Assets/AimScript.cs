@@ -11,27 +11,22 @@ public class AimScript : MonoBehaviour {
   public float radius = 4;
   public float angleRange = 120;
   public float deadZone = 0.3f;
-  // public Vector2 startPosition = new Vector2(-20, -10);
-  // public float raiseDuration = .5f;
   public float slashDuration = .5f;
-  // public float dropDuration = .5f;
-  // public Vector2 stopPosition = new Vector2(20, -10);
+  public float blockDuration = 1f;
 
   public float swingAngleStart = -75;
 
   SpriteRenderer swordSpriter;
 
-  bool aimEnabled = true;
   float aimAngle;
-  Quaternion rotation;
+  float blockAngleModifier = 0.6f;
 
   Vector2 ellipseCenter = new Vector2(0, -2);
   float ellipseRadiusX = 1;
   float ellipseRadiusY = 2;
 
-  float raiseTimeRemaining = 0;
   float slashTimeRemaining = 0;
-  float dropTimeRemaining = 0;
+  float blockTimeRemaining = 0;
 
   void Start() {
     swordSpriter = sword.GetComponent<SpriteRenderer>();
@@ -43,60 +38,51 @@ public class AimScript : MonoBehaviour {
       return;
     }
 
-    if (aimEnabled) {
+    if (slashTimeRemaining <= 0) {
       Vector2 inputAim = gamepad.leftStick.ReadValue();
       if (inputAim.magnitude >= deadZone) {
         aimAngle = Vector2.SignedAngle(Vector2.up, inputAim);
         float minAngle = (180 - angleRange) / 2;
         float maxAngle = 180 - minAngle;
         aimAngle = Mathf.Sign(aimAngle) * Mathf.Clamp(Mathf.Abs(aimAngle), minAngle, maxAngle);
-        rotation = Quaternion.AngleAxis(aimAngle - 90 * Mathf.Sign(aimAngle), Vector3.forward);
         aimIndicator.position = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
         PositionSword(0);
       }
 
-      if (gamepad.rightTrigger.wasPressedThisFrame) {
-        aimEnabled = false;
-        slashTimeRemaining = slashDuration;
-        swordSpriter.sprite = swordSprites[aimAngle < 0 ? swordSprites.Length - 1 : 0];
-      }
-    }
-    else {
-      // if (raiseTimeRemaining > 0) {
-      //   float lerpValue = (raiseDuration - raiseTimeRemaining) / raiseDuration;
-      //   PositionSword(0);
-      //   slashIndicator.position = Vector2.Lerp(startPosition, slashIndicator.position, lerpValue);
-
-      //   raiseTimeRemaining -= Time.deltaTime;
-      //   if (raiseTimeRemaining <= 0) {
-      //     slashTimeRemaining = slashDuration;
-      //   }
-      // }
-      if (slashTimeRemaining > 0) {
-        float lerpValue = (slashDuration - slashTimeRemaining) / slashDuration;
-        PositionSword(lerpValue);
-
-        slashTimeRemaining -= Time.deltaTime;
-        if (slashTimeRemaining <= 0) {
-          // dropTimeRemaining = dropDuration;
-          aimEnabled = true;
+      if (blockTimeRemaining <= 0) {
+        if (gamepad.rightTrigger.wasPressedThisFrame) {
+          slashTimeRemaining = slashDuration;
+        }
+        else if (gamepad.leftTrigger.wasPressedThisFrame) {
+          blockTimeRemaining = blockDuration;
         }
       }
-      // else if (dropTimeRemaining > 0) {
-      //   float lerpValue = (dropDuration - dropTimeRemaining) / dropDuration;
-      //   PositionSword(1);
-      //   slashIndicator.position = Vector2.Lerp(slashIndicator.position, stopPosition, lerpValue);
+    }
 
-      //   dropTimeRemaining -= Time.deltaTime;
-      //   if (dropTimeRemaining <= 0) {
-      //     aimEnabled = true;
-      //   }
-      // }
+    if (slashTimeRemaining > 0) {
+      float lerpValue = (slashDuration - slashTimeRemaining) / slashDuration;
+      PositionSword(lerpValue);
+
+      slashTimeRemaining -= Time.deltaTime;
+    }
+
+    if (blockTimeRemaining > 0) {
+      float blockAngle = aimAngle * blockAngleModifier + Mathf.Sign(aimAngle) * angleRange * (1 - blockAngleModifier);
+      PositionSword(0, blockAngle);
+      sword.position -= new Vector3(sword.position.x, 0, 0);
+      sword.localScale *= new Vector2(-1, 1);
+      sword.localRotation = Quaternion.Euler(0, 0, -sword.localRotation.eulerAngles.z);
+
+      blockTimeRemaining -= Time.deltaTime;
     }
   }
 
   void PositionSword(float lerpValue) {
-    if (aimAngle < 0) {
+    PositionSword(lerpValue, aimAngle);
+  }
+
+  void PositionSword(float lerpValue, float angle) {
+    if (angle < 0) {
       lerpValue = 1 - lerpValue;
     }
 
@@ -108,6 +94,7 @@ public class AimScript : MonoBehaviour {
     float swordWidth = swordHeight * Mathf.Tan(-swingAngle * Mathf.Deg2Rad);
     Vector2 swordPoint = handlePoint + new Vector2(swordWidth, swordHeight);
 
+    Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(aimAngle), Vector3.forward);
     handlePoint = rotation * handlePoint;
     swordPoint = rotation * swordPoint;
     // Debug.DrawLine(handlePoint, swordPoint);
