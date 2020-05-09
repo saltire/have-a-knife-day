@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290226}
   - component: {fileID: 1290225}
+  - component: {fileID: 1290227}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -203,6 +204,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1290227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4faca51814130b409a65cbdf001e7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordSprites:
+  - {fileID: 21300000, guid: be6f6835db7c21447a061bb9a7609661, type: 3}
+  - {fileID: 21300000, guid: b0b0375c0dca8664885f9a2135a0a6cf, type: 3}
+  - {fileID: 21300000, guid: a77d8a5600f67e54faf9b13a590979d3, type: 3}
+  - {fileID: 21300000, guid: 0283a9699c02a134a8aee2cceb6f6b2a, type: 3}
+  - {fileID: 21300000, guid: 0430d9e26dddd534cb6d830690ae4ca1, type: 3}
+  slashDuration: 0.3
+  swingAngleStart: -75
+  ellipseRadiusX: 2
+  ellipseRadiusY: 1
+  ellipseOffsetY: -2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,22 +542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3818f1ea772c04f4aa759a2699e0c59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 1290226}
+  sword: {fileID: 1290227}
   aimIndicator: {fileID: 2011826410}
-  swordSprites:
-  - {fileID: 21300000, guid: be6f6835db7c21447a061bb9a7609661, type: 3}
-  - {fileID: 21300000, guid: b0b0375c0dca8664885f9a2135a0a6cf, type: 3}
-  - {fileID: 21300000, guid: a77d8a5600f67e54faf9b13a590979d3, type: 3}
-  - {fileID: 21300000, guid: 0283a9699c02a134a8aee2cceb6f6b2a, type: 3}
-  - {fileID: 21300000, guid: 0430d9e26dddd534cb6d830690ae4ca1, type: 3}
   radius: 4
   angleRange: 75
   deadZone: 0.3
-  slashDuration: 0.3
-  swingAngleStart: -75
-  ellipseRadiusX: 2
-  ellipseRadiusY: 1
-  ellipseOffsetY: -2
 --- !u!1 &2011826408
 GameObject:
   m_ObjectHideFlags: 0
