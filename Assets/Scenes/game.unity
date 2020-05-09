@@ -382,14 +382,16 @@ MonoBehaviour:
   slashIndicator: {fileID: 1290226}
   aimIndicator: {fileID: 2011826410}
   swordSprites:
-  - {fileID: 21300000, guid: 52aa8fd0b017c8742b1d6e469df4bead, type: 3}
-  - {fileID: 21300000, guid: 63caa3f8753d9b149b0028e959fca806, type: 3}
-  - {fileID: 21300000, guid: 01e8a63f71078634689673d3a3004887, type: 3}
+  - {fileID: 21300000, guid: 422ff2d6f4f1552408b38b75f4d9aafd, type: 3}
+  - {fileID: 21300000, guid: db32ebab1d50dd5489f292dd48c8ef56, type: 3}
+  - {fileID: 21300000, guid: 340039fbe70744d4c816a0613e7f4e57, type: 3}
+  - {fileID: 21300000, guid: 86ff5bfc42bb3cc47b76c2507189d33a, type: 3}
+  - {fileID: 21300000, guid: 838801679b78bde448f306b0867c372d, type: 3}
   radius: 4
   angleRange: 90
   deadZone: 0.3
-  slashDuration: 1
-  swordAngleStart: -75
+  slashDuration: 0.4
+  swordAngleStart: -65
 --- !u!1 &2011826408
 GameObject:
   m_ObjectHideFlags: 0

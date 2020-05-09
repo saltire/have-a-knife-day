@@ -21,7 +21,7 @@ public class AimScript : MonoBehaviour {
 
   float ellipseOffsetY = 2;
   float ellipseRadiusX = 1;
-  float ellipseRadiusY = 3;
+  float ellipseRadiusY = 2;
 
   float slashTimeRemaining = 0;
 
@@ -53,8 +53,6 @@ public class AimScript : MonoBehaviour {
       float lerpValue = (slashDuration - slashTimeRemaining) / slashDuration;
       slashTimeRemaining -= Time.deltaTime;
 
-      slashIndicator.position = Vector2.Lerp(aimIndicator.position, -aimIndicator.position, lerpValue);
-
       Vector2 ellipseCenter = Vector2.down * ellipseOffsetY;
 
       float swordAngle = Mathf.Lerp(-swordAngleStart, swordAngleStart, lerpValue);
@@ -65,9 +63,20 @@ public class AimScript : MonoBehaviour {
       Vector2 swordPoint = handlePoint + new Vector2(swordWidth, swordHeight);
 
       Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-      Debug.DrawLine(rotation * handlePoint, rotation * swordPoint);
+      handlePoint = rotation * handlePoint;
+      swordPoint = rotation * swordPoint;
 
-      // slashIndicator.GetComponent<SpriteRenderer>().sprite = swordSprites[(int)(lerpValue * swordSprites.Length)];
+      // slashIndicator.position = Vector2.Lerp(aimIndicator.position, -aimIndicator.position, lerpValue);
+
+      // Debug.DrawLine(handlePoint, swordPoint);
+
+      slashIndicator.position = handlePoint;
+      slashIndicator.localRotation = rotation;
+
+      SpriteRenderer slashSpriter = slashIndicator.GetComponent<SpriteRenderer>();
+      slashSpriter.sprite = swordSprites[(int)(lerpValue * swordSprites.Length)];
+      float spriteHeight = slashSpriter.sprite.rect.height / slashSpriter.sprite.pixelsPerUnit;
+      slashIndicator.localScale = Vector2.one * swordHeight / spriteHeight;
     }
   }
 }
