@@ -21,9 +21,9 @@ public class AimScript : MonoBehaviour {
   float aimAngle;
   float blockAngleModifier = 0.6f;
 
-  Vector2 ellipseCenter = new Vector2(0, -2);
-  float ellipseRadiusX = 1;
-  float ellipseRadiusY = 2;
+  public float ellipseRadiusX = 3;
+  public float ellipseRadiusY = 1;
+  public float ellipseOffsetY = -2;
 
   float slashTimeRemaining = 0;
   float blockTimeRemaining = 0;
@@ -86,10 +86,11 @@ public class AimScript : MonoBehaviour {
       lerpValue = 1 - lerpValue;
     }
 
-    float swingAngle = Mathf.Lerp(-swingAngleStart, swingAngleStart, lerpValue);
+    float swingAngle = Util.EaseInOutCubic(-swingAngleStart, swingAngleStart, lerpValue);
     float swingAngleRad = (swingAngle + 90) * Mathf.Deg2Rad;
 
-    Vector2 handlePoint = ellipseCenter + new Vector2(ellipseRadiusY * Mathf.Cos(swingAngleRad), ellipseRadiusX * Mathf.Sin(swingAngleRad));
+    Vector2 ellipseCenter = new Vector2(0, ellipseOffsetY);
+    Vector2 handlePoint = ellipseCenter + new Vector2(ellipseRadiusX * Mathf.Cos(swingAngleRad), ellipseRadiusY * Mathf.Sin(swingAngleRad));
     float swordHeight = -handlePoint.y;
     float swordWidth = swordHeight * Mathf.Tan(-swingAngle * Mathf.Deg2Rad);
     Vector2 swordPoint = handlePoint + new Vector2(swordWidth, swordHeight);
