@@ -39,24 +39,23 @@ public class AimScript : MonoBehaviour {
     }
 
     if (slashTimeRemaining <= 0) {
-      Vector2 inputAim = gamepad.leftStick.ReadValue();
-      if (inputAim.magnitude >= deadZone) {
-        aimAngle = Vector2.SignedAngle(Vector2.up, inputAim);
-        float minAngle = (180 - angleRange) / 2;
-        float maxAngle = 180 - minAngle;
-        aimAngle = Mathf.Sign(aimAngle) * Mathf.Clamp(Mathf.Abs(aimAngle), minAngle, maxAngle);
-        aimIndicator.position = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
-        PositionSword(0);
+      Vector2 leftAim = gamepad.leftStick.ReadValue();
+      Vector2 rightAim = gamepad.rightStick.ReadValue();
+      if (leftAim.magnitude >= deadZone) {
+        SetAimAngle(leftAim);
+      }
+      else if (rightAim.magnitude >= deadZone) {
+        SetAimAngle(rightAim);
       }
 
-      if (gamepad.leftTrigger.isPressed) {
+      if (gamepad.leftShoulder.isPressed || gamepad.rightShoulder.isPressed) {
         float blockAngle = aimAngle * blockAngleModifier + Mathf.Sign(aimAngle) * angleRange * (1 - blockAngleModifier);
         PositionSword(0, blockAngle);
         sword.position -= new Vector3(sword.position.x, 0, 0);
         sword.localScale *= new Vector2(-1, 1);
         sword.localRotation = Quaternion.Euler(0, 0, -sword.localRotation.eulerAngles.z);
       }
-      else if (gamepad.rightTrigger.wasPressedThisFrame) {
+      else if (gamepad.leftTrigger.wasPressedThisFrame || gamepad.rightTrigger.wasPressedThisFrame) {
         slashTimeRemaining = slashDuration;
         swordTrail.emitting = true;
       }
@@ -72,6 +71,15 @@ public class AimScript : MonoBehaviour {
 
       slashTimeRemaining -= Time.deltaTime;
     }
+  }
+
+  void SetAimAngle(Vector2 inputAim) {
+    aimAngle = Vector2.SignedAngle(Vector2.up, inputAim);
+    float minAngle = (180 - angleRange) / 2;
+    float maxAngle = 180 - minAngle;
+    aimAngle = Mathf.Sign(aimAngle) * Mathf.Clamp(Mathf.Abs(aimAngle), minAngle, maxAngle);
+    aimIndicator.position = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
+    PositionSword(0);
   }
 
   void PositionSword(float lerpValue) {
