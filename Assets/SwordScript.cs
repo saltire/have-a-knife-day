@@ -62,9 +62,9 @@ public class SwordScript : MonoBehaviour {
     float swingAngle = Util.EaseInOutQuad(-swingAngleStart, swingAngleStart, lerpValue);
     float swingAngleRad = (swingAngle + 90) * Mathf.Deg2Rad;
 
-    Vector2 ellipseCenter = new Vector2(0, ellipseOffsetY);
+    Vector2 ellipseCenter = (Vector2)transform.parent.localPosition + new Vector2(0, ellipseOffsetY);
     Vector2 handlePoint = ellipseCenter + new Vector2(ellipseRadiusX * Mathf.Cos(swingAngleRad), ellipseRadiusY * Mathf.Sin(swingAngleRad));
-    float swordHeight = -handlePoint.y;
+    float swordHeight = transform.parent.localPosition.y - handlePoint.y;
     float swordWidth = swordHeight * Mathf.Tan(-swingAngle * Mathf.Deg2Rad);
     Vector2 swordPoint = handlePoint + new Vector2(swordWidth, swordHeight);
 
@@ -75,7 +75,7 @@ public class SwordScript : MonoBehaviour {
 
     handle.position = handlePoint;
 
-    transform.localPosition = new Vector2(swordPoint.x, swordPoint.y);
+    transform.position = new Vector3(swordPoint.x, swordPoint.y, transform.position.z);
     transform.localRotation = rotation;
 
     swordSpriter.sprite = swordSprites[Mathf.Min((int)(lerpValue * swordSprites.Length), swordSprites.Length - 1)];
