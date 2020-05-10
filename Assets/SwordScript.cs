@@ -71,9 +71,8 @@ public class SwordScript : MonoBehaviour {
     Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(angle), Vector3.forward);
     handlePoint = rotation * handlePoint;
     swordPoint = rotation * swordPoint;
-    // Debug.DrawLine(handlePoint, swordPoint);
+    Debug.DrawLine(handlePoint, swordPoint);
 
-    // slashIndicator.position = Vector2.Lerp(aimIndicator.position, -aimIndicator.position, lerpValue);
     transform.position = swordPoint;
     transform.localRotation = rotation;
 
