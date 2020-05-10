@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordScript : MonoBehaviour {
-  public Sprite[] swordSprites;
-  public Sprite blockSprite;
+  public GameObject[] slashObjs;
+  public GameObject blockObj;
   public Transform hand;
 
   public float handPosition = 0.9f;
@@ -21,11 +21,9 @@ public class SwordScript : MonoBehaviour {
 
   public Vector2 blockOffset = new Vector2(-4, 0);
 
-  SpriteRenderer swordSpriter;
   TrailRenderer swordTrail;
 
   void Start() {
-    swordSpriter = GetComponent<SpriteRenderer>();
     swordTrail = GetComponentInChildren<TrailRenderer>();
   }
 
@@ -59,7 +57,8 @@ public class SwordScript : MonoBehaviour {
     transform.localScale = new Vector2(Mathf.Sign(angle) * Mathf.Abs(transform.localScale.x), transform.localScale.y);
     transform.localRotation = Quaternion.Euler(-rotation.eulerAngles);
 
-    swordSpriter.sprite = blockSprite;
+    foreach (GameObject obj in slashObjs) obj.SetActive(false);
+    blockObj.SetActive(true);
 
     hand.position = transform.position;
   }
@@ -88,8 +87,12 @@ public class SwordScript : MonoBehaviour {
     transform.position = new Vector3(swordPoint.x, swordPoint.y, transform.position.z);
     transform.localRotation = rotation;
 
-    swordSpriter.sprite = swordSprites[Mathf.Min((int)(lerpValue * swordSprites.Length), swordSprites.Length - 1)];
-    float spriteHeight = swordSpriter.sprite.rect.height / swordSpriter.sprite.pixelsPerUnit;
+    foreach (GameObject obj in slashObjs) obj.SetActive(false);
+    blockObj.SetActive(false);
+    GameObject slashObj = slashObjs[Mathf.Min((int)(lerpValue * slashObjs.Length), slashObjs.Length - 1)];
+    slashObj.SetActive(true);
+    Sprite slashSprite = slashObj.GetComponent<SpriteRenderer>().sprite;
+    float spriteHeight = slashSprite.rect.height / slashSprite.pixelsPerUnit;
     transform.localScale = Vector2.one * swordHeight / spriteHeight;
   }
 }

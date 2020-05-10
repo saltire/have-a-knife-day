@@ -33,6 +33,8 @@ public class InputScript : MonoBehaviour {
     maxAimAngle = 90 + angleRange / 2;
     minBlockAngle = 90 - blockAngleRange / 2;
     maxBlockAngle = 90 + blockAngleRange / 2;
+
+    SetAimAngle(Vector2.right);
   }
 
   void Update() {
