@@ -15,15 +15,24 @@ public class InputScript : MonoBehaviour {
   Vector2 moveVelocity = Vector2.zero;
 
   public float radius = 4;
-  public float angleRange = 120;
+  public float angleRange = 75;
+  public float blockAngleRange = 40;
   public float deadZone = 0.3f;
   float aimAngle;
-  float blockAngleModifier = 0.6f;
+  float minAimAngle;
+  float maxAimAngle;
+  float minBlockAngle;
+  float maxBlockAngle;
 
   ArmScript arm;
 
   void Start() {
     arm = GetComponent<ArmScript>();
+
+    minAimAngle = 90 - angleRange / 2;
+    maxAimAngle = 90 + angleRange / 2;
+    minBlockAngle = 90 - blockAngleRange / 2;
+    maxBlockAngle = 90 + blockAngleRange / 2;
   }
 
   void Update() {
@@ -56,7 +65,7 @@ public class InputScript : MonoBehaviour {
 
       if ((arm.shoulder == leftShoulder && gamepad.leftShoulder.isPressed) ||
         (arm.shoulder == rightShoulder && gamepad.rightShoulder.isPressed)) {
-        float blockAngle = (Mathf.Abs(aimAngle) * blockAngleModifier + angleRange * (1 - blockAngleModifier)) *
+        float blockAngle = Util.Map(minAimAngle, maxAimAngle, minBlockAngle, maxBlockAngle, Mathf.Abs(aimAngle)) *
           (gamepad.leftShoulder.isPressed ? 1 : -1);
         sword.Block(blockAngle);
       }

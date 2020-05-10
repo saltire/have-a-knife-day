@@ -12,6 +12,11 @@ public class Util {
 		Debug.Log(str);
 	}
 
+  public static float Map(float fromA, float fromB, float toA, float toB, float value) {
+    float lerpValue = Mathf.InverseLerp(fromA, fromB, value);
+    return Mathf.Lerp(toA, toB, lerpValue);
+  }
+
 	public static float EaseInOutQuad(float start, float end, float value) {
 		value /= .5f;
 		end -= start;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAIScript : MonoBehaviour {
   public SwordScript sword;
+  public SwordScript playerSword;
   public Transform aimIndicator;
 
   public float tickLength = 1;
@@ -17,19 +18,43 @@ public class EnemyAIScript : MonoBehaviour {
   Vector2 moveVelocity = Vector2.zero;
 
   public float radius = 3;
-  public float angleRange = 120;
+  public float angleRange = 75;
+  public float blockAngleRange = 40;
   float aimAngle = 90;
   float angleTarget;
   float angleVelocity = 0;
+  float minAimAngle;
+  float maxAimAngle;
+  float minBlockAngle;
+  float maxBlockAngle;
+
+  public float blockDuration = .4f;
+  float blockTimeRemaining = 0;
+
+  void Start() {
+    minAimAngle = 90 - angleRange / 2;
+    maxAimAngle = 90 + angleRange / 2;
+    minBlockAngle = 90 - blockAngleRange / 2;
+    maxBlockAngle = 90 + blockAngleRange / 2;
+  }
 
   void Update() {
-    if (!sword.IsSlashing()) {
+    if (blockTimeRemaining > 0) {
+      blockTimeRemaining -= Time.deltaTime;
+
+      float blockAngle = Util.Map(minAimAngle, maxAimAngle, minBlockAngle, maxBlockAngle, aimAngle);
+      sword.Block(blockAngle);
+    }
+    else if (!sword.IsSlashing()) {
       nextTick -= Time.deltaTime;
 
       if (nextTick <= 0) {
         nextTick = tickLength;
 
-        if (Random.Range(0f, 1f) < attackProbability) {
+        if (playerSword.IsSlashing()) {
+          blockTimeRemaining = blockDuration;
+        }
+        else if (Random.Range(0f, 1f) < attackProbability) {
           sword.StartSlashing(aimAngle);
         }
         else {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour {
   public Sprite[] swordSprites;
+  public Sprite blockSprite;
   public Transform hand;
 
   public float handPosition = 0.9f;
@@ -17,6 +18,8 @@ public class SwordScript : MonoBehaviour {
   public float ellipseRadiusX = 3;
   public float ellipseRadiusY = 1;
   public float ellipseOffsetY = -2;
+
+  public Vector2 blockOffset = new Vector2(-4, 0);
 
   SpriteRenderer swordSpriter;
   TrailRenderer swordTrail;
@@ -49,11 +52,16 @@ public class SwordScript : MonoBehaviour {
     return slashTimeRemaining > 0;
   }
 
-  public void Block(float blockAngle) {
-    PositionSword(0, blockAngle);
-    transform.localPosition -= new Vector3(transform.localPosition.x, 0, 0);
-    transform.localScale *= new Vector2(-1, 1);
-    transform.localRotation = Quaternion.Euler(0, 0, -transform.localRotation.eulerAngles.z);
+  public void Block(float angle) {
+    Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(angle), Vector3.forward);
+
+    transform.localPosition = rotation * new Vector2(blockOffset.x * Mathf.Sign(angle), blockOffset.y);
+    transform.localScale = new Vector2(Mathf.Sign(angle) * Mathf.Abs(transform.localScale.x), transform.localScale.y);
+    transform.localRotation = Quaternion.Euler(-rotation.eulerAngles);
+
+    swordSpriter.sprite = blockSprite;
+
+    hand.position = transform.position;
   }
 
   public void PositionSword(float lerpValue, float angle) {
