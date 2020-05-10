@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AimScript : MonoBehaviour {
+public class InputScript : MonoBehaviour {
   public SwordScript sword;
   public Transform aimIndicator;
 

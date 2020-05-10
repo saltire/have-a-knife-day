@@ -38,15 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: background
-    uniqueID: 55478563
-    locked: 0
-  - name: enemy
-    uniqueID: 1896843455
-    locked: 0
-  - name: trails
-    uniqueID: 1060193679
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour {
   public Sprite[] swordSprites;
+  public Transform handle;
 
   public float slashDuration = .5f;
+  float slashTimeRemaining = 0;
+  float slashAngle = 0;
 
   public float swingAngleStart = -75;
-
-  SpriteRenderer swordSpriter;
-  TrailRenderer swordTrail;
 
   public float ellipseRadiusX = 3;
   public float ellipseRadiusY = 1;
   public float ellipseOffsetY = -2;
 
-  float slashTimeRemaining = 0;
-  float slashAngle = 0;
+  SpriteRenderer swordSpriter;
+  TrailRenderer swordTrail;
 
   void Start() {
     swordSpriter = GetComponent<SpriteRenderer>();
@@ -49,7 +49,7 @@ public class SwordScript : MonoBehaviour {
 
   public void Block(float blockAngle) {
     PositionSword(0, blockAngle);
-    transform.position -= new Vector3(transform.position.x, 0, 0);
+    transform.localPosition -= new Vector3(transform.localPosition.x, 0, 0);
     transform.localScale *= new Vector2(-1, 1);
     transform.localRotation = Quaternion.Euler(0, 0, -transform.localRotation.eulerAngles.z);
   }
@@ -59,7 +59,7 @@ public class SwordScript : MonoBehaviour {
       lerpValue = 1 - lerpValue;
     }
 
-    float swingAngle = Util.EaseInOutCubic(-swingAngleStart, swingAngleStart, lerpValue);
+    float swingAngle = Util.EaseInOutQuad(-swingAngleStart, swingAngleStart, lerpValue);
     float swingAngleRad = (swingAngle + 90) * Mathf.Deg2Rad;
 
     Vector2 ellipseCenter = new Vector2(0, ellipseOffsetY);
@@ -72,6 +72,8 @@ public class SwordScript : MonoBehaviour {
     handlePoint = rotation * handlePoint;
     swordPoint = rotation * swordPoint;
     Debug.DrawLine(handlePoint, swordPoint);
+
+    handle.position = handlePoint;
 
     transform.localPosition = new Vector2(swordPoint.x, swordPoint.y);
     transform.localRotation = rotation;

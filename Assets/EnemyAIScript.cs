@@ -44,11 +44,11 @@ public class EnemyAIScript : MonoBehaviour {
       }
 
       aimAngle = Mathf.SmoothDampAngle(aimAngle, angleTarget, ref angleVelocity, tickLength);
-      aimIndicator.position = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
+      aimIndicator.localPosition = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
 
       sword.PositionSword(0, aimAngle);
     }
 
-    transform.position = Vector2.SmoothDamp(transform.position, moveTarget, ref moveVelocity, moveDuration);
+    transform.localPosition = Vector2.SmoothDamp(transform.localPosition, moveTarget, ref moveVelocity, moveDuration);
   }
 }
