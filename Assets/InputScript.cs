@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class InputScript : MonoBehaviour {
   public SwordScript sword;
   public Transform aimIndicator;
+  public Transform leftShoulder;
+  public Transform rightShoulder;
 
   public float moveAmount = 1;
   public float moveDuration = 2;
@@ -18,31 +20,48 @@ public class InputScript : MonoBehaviour {
   float aimAngle;
   float blockAngleModifier = 0.6f;
 
+  ArmScript arm;
+
+  void Start() {
+    arm = GetComponent<ArmScript>();
+  }
+
   void Update() {
     Gamepad gamepad = Gamepad.current;
     if (gamepad == null) {
       return;
     }
 
-    Vector2 stickInput = gamepad.leftStick.ReadValue();
-    if (stickInput.magnitude < deadZone) {
-      stickInput = gamepad.rightStick.ReadValue();
+    Vector2? stickInput = null;
+    Vector2 leftStick = gamepad.leftStick.ReadValue();
+    if (leftStick.magnitude >= deadZone) {
+      stickInput = leftStick;
+      arm.shoulder = leftShoulder;
+    }
+    else {
+      Vector2 rightStick = gamepad.rightStick.ReadValue();
+      if (rightStick.magnitude >= deadZone) {
+        stickInput = rightStick;
+        arm.shoulder = rightShoulder;
+      }
     }
 
-    moveTarget = stickInput.magnitude >= deadZone ? stickInput * moveAmount : Vector2.zero;
+    moveTarget = stickInput != null ? stickInput.Value * moveAmount : Vector2.zero;
     transform.position = Vector2.SmoothDamp(transform.position, moveTarget, ref moveVelocity, moveDuration);
 
     if (!sword.IsSlashing()) {
-      if (stickInput.magnitude >= deadZone) {
-        SetAimAngle(stickInput);
+      if (stickInput != null) {
+        SetAimAngle(stickInput.Value);
       }
 
-      if (gamepad.leftShoulder.isPressed || gamepad.rightShoulder.isPressed) {
+      if ((arm.shoulder == leftShoulder && gamepad.leftShoulder.isPressed) ||
+        (arm.shoulder == rightShoulder && gamepad.rightShoulder.isPressed)) {
         float blockAngle = (Mathf.Abs(aimAngle) * blockAngleModifier + angleRange * (1 - blockAngleModifier)) *
           (gamepad.leftShoulder.isPressed ? 1 : -1);
         sword.Block(blockAngle);
       }
-      else if (gamepad.leftTrigger.wasPressedThisFrame || gamepad.rightTrigger.wasPressedThisFrame) {
+      else if ((arm.shoulder == leftShoulder && gamepad.leftTrigger.wasPressedThisFrame) ||
+        (arm.shoulder == rightShoulder && gamepad.rightTrigger.wasPressedThisFrame)) {
         sword.StartSlashing(aimAngle);
       }
       else {

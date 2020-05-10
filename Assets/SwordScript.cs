@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour {
   public Sprite[] swordSprites;
-  public Transform handle;
+  public Transform hand;
+
+  public float handPosition = 0.9f;
 
   public float slashDuration = .5f;
   float slashTimeRemaining = 0;
@@ -73,7 +75,7 @@ public class SwordScript : MonoBehaviour {
     swordPoint = rotation * swordPoint;
     Debug.DrawLine(handlePoint, swordPoint);
 
-    handle.position = handlePoint;
+    hand.position = Vector2.Lerp(swordPoint, handlePoint, handPosition);
 
     transform.position = new Vector3(swordPoint.x, swordPoint.y, transform.position.z);
     transform.localRotation = rotation;
