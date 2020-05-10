@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 55478563
+    locked: 0
   - name: enemy
     uniqueID: 1896843455
     locked: 0

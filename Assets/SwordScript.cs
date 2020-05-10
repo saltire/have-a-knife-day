@@ -73,7 +73,7 @@ public class SwordScript : MonoBehaviour {
     swordPoint = rotation * swordPoint;
     Debug.DrawLine(handlePoint, swordPoint);
 
-    transform.position = swordPoint;
+    transform.position = new Vector3(swordPoint.x, swordPoint.y, transform.position.z);
     transform.localRotation = rotation;
 
     swordSpriter.sprite = swordSprites[Mathf.Min((int)(lerpValue * swordSprites.Length), swordSprites.Length - 1)];
