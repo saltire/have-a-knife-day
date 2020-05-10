@@ -6,6 +6,7 @@ public class SwordScript : MonoBehaviour {
   public GameObject[] slashObjs;
   public GameObject blockObj;
   public Transform hand;
+  public GameObject blockBurstPrefab;
 
   public float handPosition = 0.9f;
 
@@ -21,7 +22,10 @@ public class SwordScript : MonoBehaviour {
 
   public Vector2 blockOffset = new Vector2(-4, 0);
 
+  GameObject swordObj;
   TrailRenderer swordTrail;
+
+  ContactFilter2D contactFilter = new ContactFilter2D().NoFilter();
 
   void Start() {
     swordTrail = GetComponentInChildren<TrailRenderer>();
@@ -53,12 +57,13 @@ public class SwordScript : MonoBehaviour {
   public void Block(float angle) {
     Quaternion rotation = Quaternion.AngleAxis(angle - 90 * Mathf.Sign(angle), Vector3.forward);
 
-    transform.localPosition = rotation * new Vector2(blockOffset.x * Mathf.Sign(angle), blockOffset.y);
+    transform.localPosition = rotation * new Vector3(blockOffset.x * Mathf.Sign(angle), blockOffset.y, transform.localPosition.z);
     transform.localScale = new Vector2(Mathf.Sign(angle) * Mathf.Abs(transform.localScale.x), transform.localScale.y);
     transform.localRotation = Quaternion.Euler(-rotation.eulerAngles);
 
     foreach (GameObject obj in slashObjs) obj.SetActive(false);
-    blockObj.SetActive(true);
+    swordObj = blockObj;
+    swordObj.SetActive(true);
 
     hand.position = transform.position;
   }
@@ -89,10 +94,18 @@ public class SwordScript : MonoBehaviour {
 
     foreach (GameObject obj in slashObjs) obj.SetActive(false);
     blockObj.SetActive(false);
-    GameObject slashObj = slashObjs[Mathf.Min((int)(lerpValue * slashObjs.Length), slashObjs.Length - 1)];
-    slashObj.SetActive(true);
-    Sprite slashSprite = slashObj.GetComponent<SpriteRenderer>().sprite;
-    float spriteHeight = slashSprite.rect.height / slashSprite.pixelsPerUnit;
+    swordObj = slashObjs[Mathf.Min((int)(lerpValue * slashObjs.Length), slashObjs.Length - 1)];
+    swordObj.SetActive(true);
+    Sprite swordSprite = swordObj.GetComponent<SpriteRenderer>().sprite;
+    float spriteHeight = swordSprite.rect.height / swordSprite.pixelsPerUnit;
     transform.localScale = Vector2.one * swordHeight / spriteHeight;
+  }
+
+  public void HandleCollision(Collision2D collision) {
+    if (IsSlashing()) {
+      slashTimeRemaining = 0;
+      swordTrail.emitting = false;
+      Instantiate<GameObject>(blockBurstPrefab, transform.position, Quaternion.identity);
+    }
   }
 }

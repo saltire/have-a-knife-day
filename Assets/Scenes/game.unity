@@ -231,6 +231,8 @@ MonoBehaviour:
   - {fileID: 1408547964}
   blockObj: {fileID: 1257982175}
   hand: {fileID: 238770217}
+  blockBurstPrefab: {fileID: 4373474168156437596, guid: 4da60a4fb09d7d846be93686eb8c76bd,
+    type: 3}
   handPosition: 0.9
   slashDuration: 0.3
   swingAngleStart: -60
@@ -249,7 +251,9 @@ GameObject:
   - component: {fileID: 2633259}
   - component: {fileID: 2633261}
   - component: {fileID: 2633260}
-  m_Layer: 0
+  - component: {fileID: 2633262}
+  - component: {fileID: 2633263}
+  m_Layer: 9
   m_Name: badsword1_30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,6 +350,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2633262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &2633263
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633258}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &166572623
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +394,9 @@ GameObject:
   - component: {fileID: 166572624}
   - component: {fileID: 166572626}
   - component: {fileID: 166572625}
-  m_Layer: 0
+  - component: {fileID: 166572627}
+  - component: {fileID: 166572628}
+  m_Layer: 8
   m_Name: sword1_30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,6 +493,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &166572627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166572623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &166572628
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166572623}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &221211844
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +537,9 @@ GameObject:
   - component: {fileID: 221211845}
   - component: {fileID: 221211847}
   - component: {fileID: 221211846}
-  m_Layer: 0
+  - component: {fileID: 221211848}
+  - component: {fileID: 221211849}
+  m_Layer: 8
   m_Name: sword1_90
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,6 +636,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &221211848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221211844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &221211849
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221211844}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &238770216
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +996,7 @@ MonoBehaviour:
   sword: {fileID: 2081091910}
   playerSword: {fileID: 1290227}
   aimIndicator: {fileID: 1334701233}
-  tickLength: 0.5
+  tickLength: 0.3
   attackProbability: 0.25
   switchProbability: 0.25
   moveAmount: 2
@@ -1020,7 +1127,9 @@ GameObject:
   - component: {fileID: 864684653}
   - component: {fileID: 864684655}
   - component: {fileID: 864684654}
-  m_Layer: 0
+  - component: {fileID: 864684656}
+  - component: {fileID: 864684657}
+  m_Layer: 9
   m_Name: badsword1_120
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,6 +1226,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &864684656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864684652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &864684657
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864684652}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &902018930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1407,9 @@ GameObject:
   - component: {fileID: 917709398}
   - component: {fileID: 917709400}
   - component: {fileID: 917709399}
-  m_Layer: 0
+  - component: {fileID: 917709401}
+  - component: {fileID: 917709402}
+  m_Layer: 9
   m_Name: badsword1_block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,6 +1506,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &917709401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917709397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &917709402
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917709397}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &924889303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,7 +1661,9 @@ GameObject:
   - component: {fileID: 1257982176}
   - component: {fileID: 1257982178}
   - component: {fileID: 1257982177}
-  m_Layer: 0
+  - component: {fileID: 1257982179}
+  - component: {fileID: 1257982180}
+  m_Layer: 8
   m_Name: sword1_block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,6 +1760,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1257982179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257982175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1257982180
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257982175}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1334701232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +2168,9 @@ GameObject:
   - component: {fileID: 1407021491}
   - component: {fileID: 1407021493}
   - component: {fileID: 1407021492}
-  m_Layer: 0
+  - component: {fileID: 1407021494}
+  - component: {fileID: 1407021495}
+  m_Layer: 8
   m_Name: sword1_120
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2053,6 +2267,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1407021494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407021490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1407021495
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407021490}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1408547964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,7 +2311,9 @@ GameObject:
   - component: {fileID: 1408547965}
   - component: {fileID: 1408547967}
   - component: {fileID: 1408547966}
-  m_Layer: 0
+  - component: {fileID: 1408547968}
+  - component: {fileID: 1408547969}
+  m_Layer: 8
   m_Name: sword1_150
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2161,6 +2410,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1408547968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408547964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1408547969
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408547964}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1459875297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,7 +2454,9 @@ GameObject:
   - component: {fileID: 1459875298}
   - component: {fileID: 1459875300}
   - component: {fileID: 1459875299}
-  m_Layer: 0
+  - component: {fileID: 1459875301}
+  - component: {fileID: 1459875302}
+  m_Layer: 9
   m_Name: badsword1_150
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2269,6 +2553,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1459875301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459875297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1459875302
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459875297}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1478485211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2627,9 @@ GameObject:
   - component: {fileID: 1745688134}
   - component: {fileID: 1745688136}
   - component: {fileID: 1745688135}
-  m_Layer: 0
+  - component: {fileID: 1745688137}
+  - component: {fileID: 1745688138}
+  m_Layer: 9
   m_Name: badsword1_90
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2407,6 +2726,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1745688137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745688133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1745688138
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745688133}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1812523709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,7 +2770,9 @@ GameObject:
   - component: {fileID: 1812523710}
   - component: {fileID: 1812523712}
   - component: {fileID: 1812523711}
-  m_Layer: 0
+  - component: {fileID: 1812523713}
+  - component: {fileID: 1812523714}
+  m_Layer: 9
   m_Name: badsword1_60
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2515,6 +2869,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1812523713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812523709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1812523714
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812523709}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1830957838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,7 +3050,9 @@ GameObject:
   - component: {fileID: 1976761419}
   - component: {fileID: 1976761421}
   - component: {fileID: 1976761420}
-  m_Layer: 0
+  - component: {fileID: 1976761422}
+  - component: {fileID: 1976761423}
+  m_Layer: 8
   m_Name: sword1_60
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2760,6 +3149,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1976761422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976761418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda5b95298f64d94eba1162edf5c124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1976761423
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976761418}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2011826408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,13 +3301,15 @@ MonoBehaviour:
   - {fileID: 2633258}
   blockObj: {fileID: 917709397}
   hand: {fileID: 1403905269}
+  blockBurstPrefab: {fileID: 4373474168156437596, guid: 4da60a4fb09d7d846be93686eb8c76bd,
+    type: 3}
   handPosition: 0.9
   slashDuration: 0.4
   swingAngleStart: -60
   ellipseRadiusX: 4
   ellipseRadiusY: 2
   ellipseOffsetY: -3
-  blockOffset: {x: -4, y: 0}
+  blockOffset: {x: -2, y: -1}
 --- !u!212 &2081091911
 SpriteRenderer:
   m_ObjectHideFlags: 0
