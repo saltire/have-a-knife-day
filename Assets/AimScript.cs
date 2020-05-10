@@ -7,10 +7,14 @@ public class AimScript : MonoBehaviour {
   public SwordScript sword;
   public Transform aimIndicator;
 
+  public float moveAmount = 1;
+  public float moveDuration = 2;
+  Vector2 moveTarget;
+  Vector2 moveVelocity = Vector2.zero;
+
   public float radius = 4;
   public float angleRange = 120;
   public float deadZone = 0.3f;
-
   float aimAngle;
   float blockAngleModifier = 0.6f;
 
@@ -20,14 +24,17 @@ public class AimScript : MonoBehaviour {
       return;
     }
 
+    Vector2 stickInput = gamepad.leftStick.ReadValue();
+    if (stickInput.magnitude < deadZone) {
+      stickInput = gamepad.rightStick.ReadValue();
+    }
+
+    moveTarget = stickInput.magnitude >= deadZone ? stickInput * moveAmount : Vector2.zero;
+    transform.position = Vector2.SmoothDamp(transform.position, moveTarget, ref moveVelocity, moveDuration);
+
     if (!sword.IsSlashing()) {
-      Vector2 leftAim = gamepad.leftStick.ReadValue();
-      Vector2 rightAim = gamepad.rightStick.ReadValue();
-      if (leftAim.magnitude >= deadZone) {
-        SetAimAngle(leftAim);
-      }
-      else if (rightAim.magnitude >= deadZone) {
-        SetAimAngle(rightAim);
+      if (stickInput.magnitude >= deadZone) {
+        SetAimAngle(stickInput);
       }
 
       if (gamepad.leftShoulder.isPressed || gamepad.rightShoulder.isPressed) {
@@ -49,6 +56,6 @@ public class AimScript : MonoBehaviour {
     float minAngle = (180 - angleRange) / 2;
     float maxAngle = 180 - minAngle;
     aimAngle = Mathf.Sign(aimAngle) * Mathf.Clamp(Mathf.Abs(aimAngle), minAngle, maxAngle);
-    aimIndicator.position = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
+    aimIndicator.localPosition = Quaternion.AngleAxis(aimAngle, Vector3.forward) * Vector2.up * radius;
   }
 }
