@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SwordCollisionScript : MonoBehaviour {
   void OnCollisionEnter2D(Collision2D collision) {
-    transform.parent.GetComponent<SwordScript>().HandleCollision(collision);
+    if (collision.gameObject.tag == "sword") {
+      transform.parent.GetComponent<SwordScript>().HandleSwordCollision(collision);
+    }
+    else if (collision.gameObject.tag == "body") {
+      transform.parent.GetComponent<SwordScript>().HandleBodyCollision(collision);
+    }
   }
 }

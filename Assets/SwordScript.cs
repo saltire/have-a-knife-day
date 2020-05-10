@@ -7,6 +7,7 @@ public class SwordScript : MonoBehaviour {
   public GameObject blockObj;
   public Transform hand;
   public GameObject blockBurstPrefab;
+  public GameObject hitBurstPrefab;
 
   public float handPosition = 0.9f;
 
@@ -52,6 +53,11 @@ public class SwordScript : MonoBehaviour {
 
   public bool IsSlashing() {
     return slashTimeRemaining > 0;
+  }
+
+  public void StopSlashing() {
+    slashTimeRemaining = 0;
+    swordTrail.emitting = false;
   }
 
   public void Block(float angle) {
@@ -101,11 +107,21 @@ public class SwordScript : MonoBehaviour {
     transform.localScale = Vector2.one * swordHeight / spriteHeight;
   }
 
-  public void HandleCollision(Collision2D collision) {
+  public void HandleSwordCollision(Collision2D collision) {
     if (IsSlashing()) {
-      slashTimeRemaining = 0;
-      swordTrail.emitting = false;
-      Instantiate<GameObject>(blockBurstPrefab, transform.position, Quaternion.identity);
+      StopSlashing();
+      Instantiate<GameObject>(blockBurstPrefab,
+        collision.contactCount > 0 ? collision.GetContact(0).point : (Vector2)transform.position,
+        Quaternion.identity);
+    }
+  }
+
+  public void HandleBodyCollision(Collision2D collision) {
+    if (IsSlashing() && collision.gameObject != transform.parent.gameObject) {
+      StopSlashing();
+      Instantiate<GameObject>(hitBurstPrefab,
+        collision.contactCount > 0 ? collision.GetContact(0).point : (Vector2)transform.position,
+        Quaternion.identity);
     }
   }
 }

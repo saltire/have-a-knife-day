@@ -233,6 +233,8 @@ MonoBehaviour:
   hand: {fileID: 238770217}
   blockBurstPrefab: {fileID: 4373474168156437596, guid: 4da60a4fb09d7d846be93686eb8c76bd,
     type: 3}
+  hitBurstPrefab: {fileID: 4110841294042262429, guid: ad86456163e9bd242b8b1d5e84089d09,
+    type: 3}
   handPosition: 0.9
   slashDuration: 0.3
   swingAngleStart: -60
@@ -255,7 +257,7 @@ GameObject:
   - component: {fileID: 2633263}
   m_Layer: 9
   m_Name: badsword1_30
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +400,7 @@ GameObject:
   - component: {fileID: 166572628}
   m_Layer: 8
   m_Name: sword1_30
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -541,7 +543,7 @@ GameObject:
   - component: {fileID: 221211849}
   m_Layer: 8
   m_Name: sword1_90
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -907,9 +909,13 @@ GameObject:
   - component: {fileID: 604332457}
   - component: {fileID: 604332459}
   - component: {fileID: 604332458}
+  - component: {fileID: 604332462}
+  - component: {fileID: 604332461}
+  - component: {fileID: 604332460}
+  - component: {fileID: 604332463}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1116,6 +1122,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shoulder: {fileID: 1478485212}
   hand: {fileID: 1403905269}
+--- !u!70 &604332460
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604332454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.36, y: -1.41}
+  m_Size: {x: 1.86, y: 3.68}
+  m_Direction: 0
+--- !u!58 &604332461
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604332454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14, y: 2.22}
+  serializedVersion: 2
+  m_Radius: 1.17
+--- !u!50 &604332462
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604332454}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &604332463
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604332454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &864684652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1212,7 @@ GameObject:
   - component: {fileID: 864684657}
   m_Layer: 9
   m_Name: badsword1_120
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1406,16 +1487,16 @@ GameObject:
   m_Component:
   - component: {fileID: 917709398}
   - component: {fileID: 917709400}
-  - component: {fileID: 917709399}
   - component: {fileID: 917709401}
   - component: {fileID: 917709402}
+  - component: {fileID: 917709399}
   m_Layer: 9
   m_Name: badsword1_block
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &917709398
 Transform:
   m_ObjectHideFlags: 0
@@ -1430,8 +1511,8 @@ Transform:
   m_Father: {fileID: 2081091912}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &917709399
-BoxCollider2D:
+--- !u!58 &917709399
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1443,19 +1524,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2, y: 1.15}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.12123185, y: 0.17345965}
-    oldSize: {x: 3.79, y: 2.43}
-    newSize: {x: 3.79, y: 2.43}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 1.4355311, y: 0.793493}
   serializedVersion: 2
-  m_Size: {x: 2.6, y: 1.8}
-  m_EdgeRadius: 0
+  m_Radius: 3
 --- !u!212 &917709400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1665,7 +1736,7 @@ GameObject:
   - component: {fileID: 1257982180}
   m_Layer: 8
   m_Name: sword1_block
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1697,7 +1768,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1, y: 0.65}
+  m_Offset: {x: 0.79, y: 0.42}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.103857175, y: 0.15103379}
@@ -1708,7 +1779,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 0.7}
+  m_Size: {x: 2.09, y: 1.36}
   m_EdgeRadius: 0
 --- !u!212 &1257982178
 SpriteRenderer:
@@ -2172,7 +2243,7 @@ GameObject:
   - component: {fileID: 1407021495}
   m_Layer: 8
   m_Name: sword1_120
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2315,7 +2386,7 @@ GameObject:
   - component: {fileID: 1408547969}
   m_Layer: 8
   m_Name: sword1_150
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2458,7 +2529,7 @@ GameObject:
   - component: {fileID: 1459875302}
   m_Layer: 9
   m_Name: badsword1_150
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2631,7 +2702,7 @@ GameObject:
   - component: {fileID: 1745688138}
   m_Layer: 9
   m_Name: badsword1_90
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2774,7 +2845,7 @@ GameObject:
   - component: {fileID: 1812523714}
   m_Layer: 9
   m_Name: badsword1_60
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3054,7 +3125,7 @@ GameObject:
   - component: {fileID: 1976761423}
   m_Layer: 8
   m_Name: sword1_60
-  m_TagString: Untagged
+  m_TagString: sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3303,13 +3374,15 @@ MonoBehaviour:
   hand: {fileID: 1403905269}
   blockBurstPrefab: {fileID: 4373474168156437596, guid: 4da60a4fb09d7d846be93686eb8c76bd,
     type: 3}
+  hitBurstPrefab: {fileID: 6218113890499725637, guid: b6911dc743dd26b4a8a1e30b90e3ecc2,
+    type: 3}
   handPosition: 0.9
   slashDuration: 0.4
   swingAngleStart: -60
   ellipseRadiusX: 4
   ellipseRadiusY: 2
   ellipseOffsetY: -3
-  blockOffset: {x: -2, y: -1}
+  blockOffset: {x: -1, y: -1}
 --- !u!212 &2081091911
 SpriteRenderer:
   m_ObjectHideFlags: 0
