@@ -117,11 +117,12 @@ public class SwordScript : MonoBehaviour {
   }
 
   public void HandleBodyCollision(Collision2D collision) {
-    if (IsSlashing() && collision.gameObject != transform.parent.gameObject) {
+    if (IsSlashing() && collision.gameObject != gameObject) {
       StopSlashing();
       Instantiate<GameObject>(hitBurstPrefab,
         collision.contactCount > 0 ? collision.GetContact(0).point : (Vector2)transform.position,
         Quaternion.identity);
+      collision.gameObject.GetComponent<ScoreScript>().LoseFinger();
     }
   }
 }
