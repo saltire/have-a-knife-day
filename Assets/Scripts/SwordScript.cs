@@ -8,6 +8,9 @@ public class SwordScript : MonoBehaviour {
   public Transform hand;
   public GameObject blockBurstPrefab;
   public GameObject hitBurstPrefab;
+  public EnemyFaceScript enemyFace;
+
+  public bool isEnemy;
 
   public float handPosition = 0.9f;
 
@@ -123,6 +126,8 @@ public class SwordScript : MonoBehaviour {
         collision.contactCount > 0 ? collision.GetContact(0).point : (Vector2)transform.position,
         Quaternion.identity);
       collision.gameObject.GetComponent<ScoreScript>().LoseFinger();
+
+      enemyFace.OnHit(isEnemy);
     }
   }
 }
