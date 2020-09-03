@@ -39,13 +39,13 @@ public class ScoreScript : MonoBehaviour {
       FindObjectOfType<InputScript>().allowInput = false;
       FindObjectOfType<EnemyFaceScript>().OnWin(!isEnemy);
 
-      showContinueTime = Time.realtimeSinceStartup + gameOverCooldown;
+      showContinueTime = Time.unscaledTime + gameOverCooldown;
     }
   }
 
   void Update() {
     if (gameOver) {
-      if (!continueText.activeSelf && Time.realtimeSinceStartup >= showContinueTime) {
+      if (!continueText.activeSelf && Time.unscaledTime >= showContinueTime) {
         continueText.SetActive(true);
       }
 
