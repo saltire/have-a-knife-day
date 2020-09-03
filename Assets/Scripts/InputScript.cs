@@ -24,6 +24,8 @@ public class InputScript : MonoBehaviour {
   float minBlockAngle;
   float maxBlockAngle;
 
+  public bool allowInput = true;
+
   ArmScript arm;
 
   void Start() {
@@ -39,7 +41,7 @@ public class InputScript : MonoBehaviour {
 
   void Update() {
     Gamepad gamepad = Gamepad.current;
-    if (gamepad == null) {
+    if (gamepad == null || !allowInput) {
       return;
     }
 

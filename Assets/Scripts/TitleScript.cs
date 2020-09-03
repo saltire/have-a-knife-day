@@ -13,11 +13,7 @@ public class TitleScript : MonoBehaviour {
 
   void Update() {
     Gamepad gamepad = Gamepad.current;
-    if (gamepad == null) {
-      return;
-    }
-
-    if (
+    if (gamepad != null && (
       gamepad.buttonNorth.wasPressedThisFrame ||
       gamepad.buttonSouth.wasPressedThisFrame ||
       gamepad.buttonEast.wasPressedThisFrame ||
@@ -28,7 +24,7 @@ public class TitleScript : MonoBehaviour {
       gamepad.rightShoulder.wasPressedThisFrame ||
       gamepad.selectButton.wasPressedThisFrame ||
       gamepad.startButton.wasPressedThisFrame
-    ) {
+    )) {
       foreach (GameObject obj in toActivate) {
         obj.SetActive(true);
       }

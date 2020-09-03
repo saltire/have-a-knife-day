@@ -125,9 +125,8 @@ public class SwordScript : MonoBehaviour {
       Instantiate<GameObject>(hitBurstPrefab,
         collision.contactCount > 0 ? collision.GetContact(0).point : (Vector2)transform.position,
         Quaternion.identity);
-      collision.gameObject.GetComponent<ScoreScript>().LoseFinger();
-
       enemyFace.OnHit(isEnemy);
+      collision.gameObject.GetComponent<ScoreScript>().LoseFinger();
     }
   }
 }
