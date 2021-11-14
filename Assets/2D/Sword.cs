@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Sword : MonoBehaviour {
   // Angles are clockwise from the top.
-  public float minStabAngle = 140;
-  public float maxStabAngle = 220;
+  // public float minStabAngle = 140;
+  // public float maxStabAngle = 220;
 
-  public Vector2 stabOrigin;
-  public float stabRadius;
+  // public Vector2 stabOrigin;
+  // public float stabRadius;
+
+  public Collider2D[] stabAreas;
 
   // float velocity = 0;
   Vector3 velocity = Vector3.zero;
@@ -22,8 +25,9 @@ public class Sword : MonoBehaviour {
     float armAngle = Vector2.SignedAngle(transform.position, Vector3.down) + 180;
 
     // Aim the sword differently depending if the arm is at a slash or stab angle.
-    // bool aimForStab = armAngle > minStabAngle && armAngle < maxStabAngle;
-    bool aimForStab = Vector2.Distance(transform.position, stabOrigin) <= stabRadius;
+    // bool aimForStab = (armAngle > minStabAngle && armAngle < maxStabAngle)
+    //   || Vector2.Distance(transform.position, stabOrigin) <= stabRadius;
+    bool aimForStab = stabAreas.Any(coll => coll.OverlapPoint(transform.position));
 
     // float currentAimAngle = transform.eulerAngles.z;
 
