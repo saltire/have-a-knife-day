@@ -182,7 +182,6 @@ GameObject:
   - component: {fileID: 692988927}
   - component: {fileID: 692988926}
   - component: {fileID: 692988925}
-  - component: {fileID: 692988931}
   - component: {fileID: 692988932}
   - component: {fileID: 692988930}
   - component: {fileID: 692988929}
@@ -382,22 +381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.5
---- !u!114 &692988931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692988924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da907321a917544ebe7a28d9be1ca70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scale: 5
-  smoothTime: 0.05
-  unitsPerMetre: 5
-  maxSpeed: 50
 --- !u!114 &692988932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,11 +393,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53353b59de5051e43b1af97a0a48c220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 5
+  unitsPerMetre: 5
+  moveDuration: 0.05
+  maxMoveSpeed: 50
   stabAreas:
   - {fileID: 1166782664}
   - {fileID: 1153030535}
-  aimDuration: 0.05
-  maxSpeed: 1000
+  rotateDuration: 0.1
+  maxRotateSpeed: 1000
   target: {fileID: 1233613686}
 --- !u!1001 &748358044
 PrefabInstance:
