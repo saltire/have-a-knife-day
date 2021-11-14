@@ -10,9 +10,9 @@ public class Sword : MonoBehaviour {
   public Vector2 stabOrigin;
   public float stabRadius;
 
-  float velocity = 0;
-  float velocity2 = 0;
-  public float aimDuration = .05f;
+  // float velocity = 0;
+  Vector3 velocity = Vector3.zero;
+  public float aimDuration = .1f;
   public float maxSpeed = 1000;
 
   public Transform target;
@@ -39,16 +39,18 @@ public class Sword : MonoBehaviour {
     // transform.rotation = Quaternion.Euler(0, 0, aimAngle);
 
 
-
     Vector3 currentAimDir = transform.rotation * Vector3.up;
     Vector3 targetAimDir = aimForStab ? target.position - transform.position
       : transform.position - target.position;
 
-    Vector3 axis = Vector3.Cross(currentAimDir, targetAimDir);
-    float angle = Vector3.Angle(currentAimDir, targetAimDir);
+    // Vector3 axis = Vector3.Cross(currentAimDir, targetAimDir);
+    // float angle = Vector3.Angle(currentAimDir, targetAimDir);
 
-    float moveAngle = Mathf.SmoothDampAngle(0, angle, ref velocity2, aimDuration, maxSpeed);
+    // float moveAngle = Mathf.SmoothDampAngle(0, angle, ref velocity, aimDuration, maxSpeed);
+    // transform.RotateAround(transform.position, axis, moveAngle);
 
-    transform.RotateAround(transform.position, axis, moveAngle);
+    Vector3 aimDir = Vector3.SmoothDamp(currentAimDir, targetAimDir, ref velocity,
+      aimDuration, maxSpeed);
+    transform.rotation = Quaternion.FromToRotation(Vector3.up, aimDir);
   }
 }
