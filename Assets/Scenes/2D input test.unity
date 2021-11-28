@@ -401,11 +401,11 @@ MonoBehaviour:
   stabAreas:
   - {fileID: 1166782664}
   - {fileID: 1153030535}
-  rotateDuration: 0.1
-  maxRotateSpeed: 1000
-  target: {fileID: 1233613686}
   minSlashVelocity: 15
   slashCooldown: 0.25
+  rotateDuration: 0.1
+  maxRotateSpeed: 1000
+  stabTarget: {fileID: 1233613686}
 --- !u!1001 &748358044
 PrefabInstance:
   m_ObjectHideFlags: 0
