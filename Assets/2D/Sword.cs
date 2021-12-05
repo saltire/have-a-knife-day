@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Sword : MonoBehaviour {
   public float scale = 5;
@@ -28,6 +29,13 @@ public class Sword : MonoBehaviour {
 
   public Transform stabTarget;
 
+  public float slashStaminaCost = .5f;
+  public float moveStaminaCost = .1f;
+  public float staminaRecoveryRate = 1;
+
+  float stamina = 1;
+  public Image staminaBar;
+
   void Update() {
     Gamepad gamepad = Gamepad.current;
     if (gamepad == null) {
@@ -37,10 +45,17 @@ public class Sword : MonoBehaviour {
     Vector2 rightStick = gamepad.rightStick.ReadValue();
     float stickAngle = Vector3.SignedAngle(rightStick, Vector3.up, Vector3.back);
 
+    Vector3 lastPosition = transform.position;
     if (!slashing) {
+      stamina = Mathf.Min(1, stamina + staminaRecoveryRate * Time.deltaTime);
+
       // Move sword toward the stick direction.
       transform.position = Vector3.SmoothDamp(
-        transform.position, rightStick * scale, ref moveVelocity, moveDuration, maxMoveSpeed);
+        transform.position, rightStick * scale, ref moveVelocity, moveDuration,
+        maxMoveSpeed * stamina);
+
+      float distanceMoved = Vector3.Distance(transform.position, lastPosition);
+      stamina = Mathf.Max(0, stamina - distanceMoved * moveStaminaCost);
     }
     else {
       // Move the sword toward the slash target. TODO: different speed values.
@@ -87,6 +102,7 @@ public class Sword : MonoBehaviour {
 
       if (
         !aimForStab && inSlashArea && !wasInSlashArea && moveVelocity.magnitude >= minSlashVelocity
+        && stamina >= slashStaminaCost
       ) {
         // Find the target point on the opposite edge of the circle by passing it and going back.
         RaycastHit2D hit = Physics2D.Raycast(
@@ -96,8 +112,12 @@ public class Sword : MonoBehaviour {
         slashStart = transform.position;
         slashTarget = hit.point;
         slashScale = Vector3.Distance(slashStart, slashTarget);
+
+        stamina -= slashStaminaCost;
       }
     }
+
+    staminaBar.rectTransform.anchorMax = new Vector2(1, stamina);
   }
 
   Quaternion SlashRotation(Vector2 position, Vector2 start, Vector2 target) {
